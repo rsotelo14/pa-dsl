@@ -1,0 +1,1584 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ADD_COLUMN
+    ALTER_TABLE
+    BETWEEN
+    CAST
+    CLAVE_PRIMA
+    CLAVE_REFERENTE
+    COUNT
+    CREATE_TABLE
+    CREA_LA_TABLA
+    DEFAULT
+    DELETE_FROM
+    DISTINCT
+    DIVIDE
+    DOT
+    DROP_COLUMN
+    DROP_TABLE
+    EN_ESTO
+    EXISTE
+    EXISTS
+    FOREIGN_KEY
+    FROM
+    GROUP_BY
+    HAVING
+    IN
+    INSERT_INTO
+    IS_NULL
+    JOIN
+    LIKE
+    LIMIT
+    MINUS
+    NOT
+    NOT_NULL
+    ON
+    OR
+    ORDER_BY
+    PLUS
+    PRIMARY_KEY
+    SELECT
+    SET
+    TIRA_LA_TABLA
+    TRANSFORMA_A
+    UNIQUE
+    UPDATE
+    VALUES
+    WHERE
+    Y
+
+Grammar
+
+Rule 0     S' -> query
+Rule 1     query -> select_query
+Rule 2     query -> insert_query
+Rule 3     query -> update_query
+Rule 4     query -> alter_query
+Rule 5     query -> delete_query
+Rule 6     alter_query -> CAMBIA_LA_TABLA table alter_action SEMICOLON
+Rule 7     alter_action -> AGREGA_LA_COLUMNA IDENTIFIER datatype opt_constraints
+Rule 8     alter_action -> ELIMINA_LA_COLUMNA IDENTIFIER
+Rule 9     opt_constraints -> constraints
+Rule 10    opt_constraints -> <empty>
+Rule 11    constraints -> constraints constraint
+Rule 12    constraints -> constraint
+Rule 13    constraint -> NO_NULO
+Rule 14    constraint -> UNICO
+Rule 15    constraint -> POR_DEFECTO value
+Rule 16    datatype -> IDENTIFIER LPAREN NUMBER RPAREN
+Rule 17    select_query -> TRAEME selection DE_LA_TABLA table opt_join_clause opt_where_clause opt_group_by_clause opt_having_clause opt_order_by_clause opt_limit_clause SEMICOLON
+Rule 18    opt_having_clause -> WHERE_DEL_GROUP_BY condition
+Rule 19    opt_having_clause -> <empty>
+Rule 20    opt_join_clause -> MEZCLANDO table EN condition
+Rule 21    opt_join_clause -> <empty>
+Rule 22    selection -> TODO
+Rule 23    selection -> LOS_DISTINTOS columns
+Rule 24    selection -> CONTANDO LPAREN ASTERISK RPAREN
+Rule 25    selection -> CONTANDO LPAREN TODO RPAREN
+Rule 26    selection -> columns
+Rule 27    columns -> column_list
+Rule 28    column_list -> column_list COMMA column
+Rule 29    column_list -> column
+Rule 30    column -> IDENTIFIER
+Rule 31    table -> IDENTIFIER
+Rule 32    opt_where_clause -> DONDE condition
+Rule 33    opt_where_clause -> <empty>
+Rule 34    condition -> IDENTIFIER EQUALS value
+Rule 35    condition -> IDENTIFIER GREATER value
+Rule 36    condition -> IDENTIFIER LESS value
+Rule 37    condition -> IDENTIFIER GREATER_EQUALS value
+Rule 38    condition -> IDENTIFIER LESS_EQUALS value
+Rule 39    condition -> IDENTIFIER NOT_EQUALS value
+Rule 40    condition -> IDENTIFIER ENTRE value AND value
+Rule 41    condition -> IDENTIFIER PARECIDO_A value
+Rule 42    condition -> IDENTIFIER ES_NULO
+Rule 43    condition -> CONTANDO LPAREN ASTERISK RPAREN GREATER NUMBER
+Rule 44    value -> NUMBER
+Rule 45    value -> STRING
+Rule 46    value -> IDENTIFIER
+Rule 47    opt_group_by_clause -> AGRUPANDO_POR columns
+Rule 48    opt_group_by_clause -> <empty>
+Rule 49    opt_order_by_clause -> ORDENA_POR columns
+Rule 50    opt_order_by_clause -> <empty>
+Rule 51    opt_limit_clause -> COMO_MUCHO NUMBER
+Rule 52    opt_limit_clause -> <empty>
+Rule 53    insert_query -> METE_EN table LPAREN columns RPAREN LOS_VALORES LPAREN values RPAREN SEMICOLON
+Rule 54    values -> values COMMA value
+Rule 55    values -> value
+Rule 56    update_query -> ACTUALIZA table SETEA assignments opt_where_clause SEMICOLON
+Rule 57    assignments -> assignments COMMA assignment
+Rule 58    assignments -> assignment
+Rule 59    assignment -> IDENTIFIER EQUALS value
+Rule 60    delete_query -> BORRA_DE_LA table opt_where_clause SEMICOLON
+
+Terminals, with rules where they appear
+
+ACTUALIZA            : 56
+ADD_COLUMN           : 
+AGREGA_LA_COLUMNA    : 7
+AGRUPANDO_POR        : 47
+ALTER_TABLE          : 
+AND                  : 40
+ASTERISK             : 24 43
+BETWEEN              : 
+BORRA_DE_LA          : 60
+CAMBIA_LA_TABLA      : 6
+CAST                 : 
+CLAVE_PRIMA          : 
+CLAVE_REFERENTE      : 
+COMMA                : 28 54 57
+COMO_MUCHO           : 51
+CONTANDO             : 24 25 43
+COUNT                : 
+CREATE_TABLE         : 
+CREA_LA_TABLA        : 
+DEFAULT              : 
+DELETE_FROM          : 
+DE_LA_TABLA          : 17
+DISTINCT             : 
+DIVIDE               : 
+DONDE                : 32
+DOT                  : 
+DROP_COLUMN          : 
+DROP_TABLE           : 
+ELIMINA_LA_COLUMNA   : 8
+EN                   : 20
+ENTRE                : 40
+EN_ESTO              : 
+EQUALS               : 34 59
+ES_NULO              : 42
+EXISTE               : 
+EXISTS               : 
+FOREIGN_KEY          : 
+FROM                 : 
+GREATER              : 35 43
+GREATER_EQUALS       : 37
+GROUP_BY             : 
+HAVING               : 
+IDENTIFIER           : 7 8 16 30 31 34 35 36 37 38 39 40 41 42 46 59
+IN                   : 
+INSERT_INTO          : 
+IS_NULL              : 
+JOIN                 : 
+LESS                 : 36
+LESS_EQUALS          : 38
+LIKE                 : 
+LIMIT                : 
+LOS_DISTINTOS        : 23
+LOS_VALORES          : 53
+LPAREN               : 16 24 25 43 53 53
+METE_EN              : 53
+MEZCLANDO            : 20
+MINUS                : 
+NOT                  : 
+NOT_EQUALS           : 39
+NOT_NULL             : 
+NO_NULO              : 13
+NUMBER               : 16 43 44 51
+ON                   : 
+OR                   : 
+ORDENA_POR           : 49
+ORDER_BY             : 
+PARECIDO_A           : 41
+PLUS                 : 
+POR_DEFECTO          : 15
+PRIMARY_KEY          : 
+RPAREN               : 16 24 25 43 53 53
+SELECT               : 
+SEMICOLON            : 6 17 53 56 60
+SET                  : 
+SETEA                : 56
+STRING               : 45
+TIRA_LA_TABLA        : 
+TODO                 : 22 25
+TRAEME               : 17
+TRANSFORMA_A         : 
+UNICO                : 14
+UNIQUE               : 
+UPDATE               : 
+VALUES               : 
+WHERE                : 
+WHERE_DEL_GROUP_BY   : 18
+Y                    : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+alter_action         : 6
+alter_query          : 4
+assignment           : 57 58
+assignments          : 56 57
+column               : 28 29
+column_list          : 27 28
+columns              : 23 26 47 49 53
+condition            : 18 20 32
+constraint           : 11 12
+constraints          : 9 11
+datatype             : 7
+delete_query         : 5
+insert_query         : 2
+opt_constraints      : 7
+opt_group_by_clause  : 17
+opt_having_clause    : 17
+opt_join_clause      : 17
+opt_limit_clause     : 17
+opt_order_by_clause  : 17
+opt_where_clause     : 17 56 60
+query                : 0
+select_query         : 1
+selection            : 17
+table                : 6 17 20 53 56 60
+update_query         : 3
+value                : 15 34 35 36 37 38 39 40 40 41 54 55 59
+values               : 53 54
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . query
+    (1) query -> . select_query
+    (2) query -> . insert_query
+    (3) query -> . update_query
+    (4) query -> . alter_query
+    (5) query -> . delete_query
+    (17) select_query -> . TRAEME selection DE_LA_TABLA table opt_join_clause opt_where_clause opt_group_by_clause opt_having_clause opt_order_by_clause opt_limit_clause SEMICOLON
+    (53) insert_query -> . METE_EN table LPAREN columns RPAREN LOS_VALORES LPAREN values RPAREN SEMICOLON
+    (56) update_query -> . ACTUALIZA table SETEA assignments opt_where_clause SEMICOLON
+    (6) alter_query -> . CAMBIA_LA_TABLA table alter_action SEMICOLON
+    (60) delete_query -> . BORRA_DE_LA table opt_where_clause SEMICOLON
+
+    TRAEME          shift and go to state 7
+    METE_EN         shift and go to state 8
+    ACTUALIZA       shift and go to state 9
+    CAMBIA_LA_TABLA shift and go to state 10
+    BORRA_DE_LA     shift and go to state 11
+
+    query                          shift and go to state 1
+    select_query                   shift and go to state 2
+    insert_query                   shift and go to state 3
+    update_query                   shift and go to state 4
+    alter_query                    shift and go to state 5
+    delete_query                   shift and go to state 6
+
+state 1
+
+    (0) S' -> query .
+
+
+
+state 2
+
+    (1) query -> select_query .
+
+    $end            reduce using rule 1 (query -> select_query .)
+
+
+state 3
+
+    (2) query -> insert_query .
+
+    $end            reduce using rule 2 (query -> insert_query .)
+
+
+state 4
+
+    (3) query -> update_query .
+
+    $end            reduce using rule 3 (query -> update_query .)
+
+
+state 5
+
+    (4) query -> alter_query .
+
+    $end            reduce using rule 4 (query -> alter_query .)
+
+
+state 6
+
+    (5) query -> delete_query .
+
+    $end            reduce using rule 5 (query -> delete_query .)
+
+
+state 7
+
+    (17) select_query -> TRAEME . selection DE_LA_TABLA table opt_join_clause opt_where_clause opt_group_by_clause opt_having_clause opt_order_by_clause opt_limit_clause SEMICOLON
+    (22) selection -> . TODO
+    (23) selection -> . LOS_DISTINTOS columns
+    (24) selection -> . CONTANDO LPAREN ASTERISK RPAREN
+    (25) selection -> . CONTANDO LPAREN TODO RPAREN
+    (26) selection -> . columns
+    (27) columns -> . column_list
+    (28) column_list -> . column_list COMMA column
+    (29) column_list -> . column
+    (30) column -> . IDENTIFIER
+
+    TODO            shift and go to state 13
+    LOS_DISTINTOS   shift and go to state 14
+    CONTANDO        shift and go to state 16
+    IDENTIFIER      shift and go to state 19
+
+    selection                      shift and go to state 12
+    columns                        shift and go to state 15
+    column_list                    shift and go to state 17
+    column                         shift and go to state 18
+
+state 8
+
+    (53) insert_query -> METE_EN . table LPAREN columns RPAREN LOS_VALORES LPAREN values RPAREN SEMICOLON
+    (31) table -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 21
+
+    table                          shift and go to state 20
+
+state 9
+
+    (56) update_query -> ACTUALIZA . table SETEA assignments opt_where_clause SEMICOLON
+    (31) table -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 21
+
+    table                          shift and go to state 22
+
+state 10
+
+    (6) alter_query -> CAMBIA_LA_TABLA . table alter_action SEMICOLON
+    (31) table -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 21
+
+    table                          shift and go to state 23
+
+state 11
+
+    (60) delete_query -> BORRA_DE_LA . table opt_where_clause SEMICOLON
+    (31) table -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 21
+
+    table                          shift and go to state 24
+
+state 12
+
+    (17) select_query -> TRAEME selection . DE_LA_TABLA table opt_join_clause opt_where_clause opt_group_by_clause opt_having_clause opt_order_by_clause opt_limit_clause SEMICOLON
+
+    DE_LA_TABLA     shift and go to state 25
+
+
+state 13
+
+    (22) selection -> TODO .
+
+    DE_LA_TABLA     reduce using rule 22 (selection -> TODO .)
+
+
+state 14
+
+    (23) selection -> LOS_DISTINTOS . columns
+    (27) columns -> . column_list
+    (28) column_list -> . column_list COMMA column
+    (29) column_list -> . column
+    (30) column -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 19
+
+    columns                        shift and go to state 26
+    column_list                    shift and go to state 17
+    column                         shift and go to state 18
+
+state 15
+
+    (26) selection -> columns .
+
+    DE_LA_TABLA     reduce using rule 26 (selection -> columns .)
+
+
+state 16
+
+    (24) selection -> CONTANDO . LPAREN ASTERISK RPAREN
+    (25) selection -> CONTANDO . LPAREN TODO RPAREN
+
+    LPAREN          shift and go to state 27
+
+
+state 17
+
+    (27) columns -> column_list .
+    (28) column_list -> column_list . COMMA column
+
+    DE_LA_TABLA     reduce using rule 27 (columns -> column_list .)
+    RPAREN          reduce using rule 27 (columns -> column_list .)
+    WHERE_DEL_GROUP_BY reduce using rule 27 (columns -> column_list .)
+    ORDENA_POR      reduce using rule 27 (columns -> column_list .)
+    COMO_MUCHO      reduce using rule 27 (columns -> column_list .)
+    SEMICOLON       reduce using rule 27 (columns -> column_list .)
+    COMMA           shift and go to state 28
+
+
+state 18
+
+    (29) column_list -> column .
+
+    COMMA           reduce using rule 29 (column_list -> column .)
+    DE_LA_TABLA     reduce using rule 29 (column_list -> column .)
+    RPAREN          reduce using rule 29 (column_list -> column .)
+    WHERE_DEL_GROUP_BY reduce using rule 29 (column_list -> column .)
+    ORDENA_POR      reduce using rule 29 (column_list -> column .)
+    COMO_MUCHO      reduce using rule 29 (column_list -> column .)
+    SEMICOLON       reduce using rule 29 (column_list -> column .)
+
+
+state 19
+
+    (30) column -> IDENTIFIER .
+
+    COMMA           reduce using rule 30 (column -> IDENTIFIER .)
+    DE_LA_TABLA     reduce using rule 30 (column -> IDENTIFIER .)
+    RPAREN          reduce using rule 30 (column -> IDENTIFIER .)
+    WHERE_DEL_GROUP_BY reduce using rule 30 (column -> IDENTIFIER .)
+    ORDENA_POR      reduce using rule 30 (column -> IDENTIFIER .)
+    COMO_MUCHO      reduce using rule 30 (column -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 30 (column -> IDENTIFIER .)
+
+
+state 20
+
+    (53) insert_query -> METE_EN table . LPAREN columns RPAREN LOS_VALORES LPAREN values RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 29
+
+
+state 21
+
+    (31) table -> IDENTIFIER .
+
+    LPAREN          reduce using rule 31 (table -> IDENTIFIER .)
+    SETEA           reduce using rule 31 (table -> IDENTIFIER .)
+    AGREGA_LA_COLUMNA reduce using rule 31 (table -> IDENTIFIER .)
+    ELIMINA_LA_COLUMNA reduce using rule 31 (table -> IDENTIFIER .)
+    DONDE           reduce using rule 31 (table -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 31 (table -> IDENTIFIER .)
+    MEZCLANDO       reduce using rule 31 (table -> IDENTIFIER .)
+    AGRUPANDO_POR   reduce using rule 31 (table -> IDENTIFIER .)
+    WHERE_DEL_GROUP_BY reduce using rule 31 (table -> IDENTIFIER .)
+    ORDENA_POR      reduce using rule 31 (table -> IDENTIFIER .)
+    COMO_MUCHO      reduce using rule 31 (table -> IDENTIFIER .)
+    EN              reduce using rule 31 (table -> IDENTIFIER .)
+
+
+state 22
+
+    (56) update_query -> ACTUALIZA table . SETEA assignments opt_where_clause SEMICOLON
+
+    SETEA           shift and go to state 30
+
+
+state 23
+
+    (6) alter_query -> CAMBIA_LA_TABLA table . alter_action SEMICOLON
+    (7) alter_action -> . AGREGA_LA_COLUMNA IDENTIFIER datatype opt_constraints
+    (8) alter_action -> . ELIMINA_LA_COLUMNA IDENTIFIER
+
+    AGREGA_LA_COLUMNA shift and go to state 32
+    ELIMINA_LA_COLUMNA shift and go to state 33
+
+    alter_action                   shift and go to state 31
+
+state 24
+
+    (60) delete_query -> BORRA_DE_LA table . opt_where_clause SEMICOLON
+    (32) opt_where_clause -> . DONDE condition
+    (33) opt_where_clause -> .
+
+    DONDE           shift and go to state 35
+    SEMICOLON       reduce using rule 33 (opt_where_clause -> .)
+
+    opt_where_clause               shift and go to state 34
+
+state 25
+
+    (17) select_query -> TRAEME selection DE_LA_TABLA . table opt_join_clause opt_where_clause opt_group_by_clause opt_having_clause opt_order_by_clause opt_limit_clause SEMICOLON
+    (31) table -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 21
+
+    table                          shift and go to state 36
+
+state 26
+
+    (23) selection -> LOS_DISTINTOS columns .
+
+    DE_LA_TABLA     reduce using rule 23 (selection -> LOS_DISTINTOS columns .)
+
+
+state 27
+
+    (24) selection -> CONTANDO LPAREN . ASTERISK RPAREN
+    (25) selection -> CONTANDO LPAREN . TODO RPAREN
+
+    ASTERISK        shift and go to state 37
+    TODO            shift and go to state 38
+
+
+state 28
+
+    (28) column_list -> column_list COMMA . column
+    (30) column -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 19
+
+    column                         shift and go to state 39
+
+state 29
+
+    (53) insert_query -> METE_EN table LPAREN . columns RPAREN LOS_VALORES LPAREN values RPAREN SEMICOLON
+    (27) columns -> . column_list
+    (28) column_list -> . column_list COMMA column
+    (29) column_list -> . column
+    (30) column -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 19
+
+    columns                        shift and go to state 40
+    column_list                    shift and go to state 17
+    column                         shift and go to state 18
+
+state 30
+
+    (56) update_query -> ACTUALIZA table SETEA . assignments opt_where_clause SEMICOLON
+    (57) assignments -> . assignments COMMA assignment
+    (58) assignments -> . assignment
+    (59) assignment -> . IDENTIFIER EQUALS value
+
+    IDENTIFIER      shift and go to state 43
+
+    assignments                    shift and go to state 41
+    assignment                     shift and go to state 42
+
+state 31
+
+    (6) alter_query -> CAMBIA_LA_TABLA table alter_action . SEMICOLON
+
+    SEMICOLON       shift and go to state 44
+
+
+state 32
+
+    (7) alter_action -> AGREGA_LA_COLUMNA . IDENTIFIER datatype opt_constraints
+
+    IDENTIFIER      shift and go to state 45
+
+
+state 33
+
+    (8) alter_action -> ELIMINA_LA_COLUMNA . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 46
+
+
+state 34
+
+    (60) delete_query -> BORRA_DE_LA table opt_where_clause . SEMICOLON
+
+    SEMICOLON       shift and go to state 47
+
+
+state 35
+
+    (32) opt_where_clause -> DONDE . condition
+    (34) condition -> . IDENTIFIER EQUALS value
+    (35) condition -> . IDENTIFIER GREATER value
+    (36) condition -> . IDENTIFIER LESS value
+    (37) condition -> . IDENTIFIER GREATER_EQUALS value
+    (38) condition -> . IDENTIFIER LESS_EQUALS value
+    (39) condition -> . IDENTIFIER NOT_EQUALS value
+    (40) condition -> . IDENTIFIER ENTRE value AND value
+    (41) condition -> . IDENTIFIER PARECIDO_A value
+    (42) condition -> . IDENTIFIER ES_NULO
+    (43) condition -> . CONTANDO LPAREN ASTERISK RPAREN GREATER NUMBER
+
+    IDENTIFIER      shift and go to state 49
+    CONTANDO        shift and go to state 50
+
+    condition                      shift and go to state 48
+
+state 36
+
+    (17) select_query -> TRAEME selection DE_LA_TABLA table . opt_join_clause opt_where_clause opt_group_by_clause opt_having_clause opt_order_by_clause opt_limit_clause SEMICOLON
+    (20) opt_join_clause -> . MEZCLANDO table EN condition
+    (21) opt_join_clause -> .
+
+    MEZCLANDO       shift and go to state 52
+    DONDE           reduce using rule 21 (opt_join_clause -> .)
+    AGRUPANDO_POR   reduce using rule 21 (opt_join_clause -> .)
+    WHERE_DEL_GROUP_BY reduce using rule 21 (opt_join_clause -> .)
+    ORDENA_POR      reduce using rule 21 (opt_join_clause -> .)
+    COMO_MUCHO      reduce using rule 21 (opt_join_clause -> .)
+    SEMICOLON       reduce using rule 21 (opt_join_clause -> .)
+
+    opt_join_clause                shift and go to state 51
+
+state 37
+
+    (24) selection -> CONTANDO LPAREN ASTERISK . RPAREN
+
+    RPAREN          shift and go to state 53
+
+
+state 38
+
+    (25) selection -> CONTANDO LPAREN TODO . RPAREN
+
+    RPAREN          shift and go to state 54
+
+
+state 39
+
+    (28) column_list -> column_list COMMA column .
+
+    COMMA           reduce using rule 28 (column_list -> column_list COMMA column .)
+    DE_LA_TABLA     reduce using rule 28 (column_list -> column_list COMMA column .)
+    RPAREN          reduce using rule 28 (column_list -> column_list COMMA column .)
+    WHERE_DEL_GROUP_BY reduce using rule 28 (column_list -> column_list COMMA column .)
+    ORDENA_POR      reduce using rule 28 (column_list -> column_list COMMA column .)
+    COMO_MUCHO      reduce using rule 28 (column_list -> column_list COMMA column .)
+    SEMICOLON       reduce using rule 28 (column_list -> column_list COMMA column .)
+
+
+state 40
+
+    (53) insert_query -> METE_EN table LPAREN columns . RPAREN LOS_VALORES LPAREN values RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 55
+
+
+state 41
+
+    (56) update_query -> ACTUALIZA table SETEA assignments . opt_where_clause SEMICOLON
+    (57) assignments -> assignments . COMMA assignment
+    (32) opt_where_clause -> . DONDE condition
+    (33) opt_where_clause -> .
+
+    COMMA           shift and go to state 57
+    DONDE           shift and go to state 35
+    SEMICOLON       reduce using rule 33 (opt_where_clause -> .)
+
+    opt_where_clause               shift and go to state 56
+
+state 42
+
+    (58) assignments -> assignment .
+
+    COMMA           reduce using rule 58 (assignments -> assignment .)
+    DONDE           reduce using rule 58 (assignments -> assignment .)
+    SEMICOLON       reduce using rule 58 (assignments -> assignment .)
+
+
+state 43
+
+    (59) assignment -> IDENTIFIER . EQUALS value
+
+    EQUALS          shift and go to state 58
+
+
+state 44
+
+    (6) alter_query -> CAMBIA_LA_TABLA table alter_action SEMICOLON .
+
+    $end            reduce using rule 6 (alter_query -> CAMBIA_LA_TABLA table alter_action SEMICOLON .)
+
+
+state 45
+
+    (7) alter_action -> AGREGA_LA_COLUMNA IDENTIFIER . datatype opt_constraints
+    (16) datatype -> . IDENTIFIER LPAREN NUMBER RPAREN
+
+    IDENTIFIER      shift and go to state 59
+
+    datatype                       shift and go to state 60
+
+state 46
+
+    (8) alter_action -> ELIMINA_LA_COLUMNA IDENTIFIER .
+
+    SEMICOLON       reduce using rule 8 (alter_action -> ELIMINA_LA_COLUMNA IDENTIFIER .)
+
+
+state 47
+
+    (60) delete_query -> BORRA_DE_LA table opt_where_clause SEMICOLON .
+
+    $end            reduce using rule 60 (delete_query -> BORRA_DE_LA table opt_where_clause SEMICOLON .)
+
+
+state 48
+
+    (32) opt_where_clause -> DONDE condition .
+
+    SEMICOLON       reduce using rule 32 (opt_where_clause -> DONDE condition .)
+    AGRUPANDO_POR   reduce using rule 32 (opt_where_clause -> DONDE condition .)
+    WHERE_DEL_GROUP_BY reduce using rule 32 (opt_where_clause -> DONDE condition .)
+    ORDENA_POR      reduce using rule 32 (opt_where_clause -> DONDE condition .)
+    COMO_MUCHO      reduce using rule 32 (opt_where_clause -> DONDE condition .)
+
+
+state 49
+
+    (34) condition -> IDENTIFIER . EQUALS value
+    (35) condition -> IDENTIFIER . GREATER value
+    (36) condition -> IDENTIFIER . LESS value
+    (37) condition -> IDENTIFIER . GREATER_EQUALS value
+    (38) condition -> IDENTIFIER . LESS_EQUALS value
+    (39) condition -> IDENTIFIER . NOT_EQUALS value
+    (40) condition -> IDENTIFIER . ENTRE value AND value
+    (41) condition -> IDENTIFIER . PARECIDO_A value
+    (42) condition -> IDENTIFIER . ES_NULO
+
+    EQUALS          shift and go to state 61
+    GREATER         shift and go to state 62
+    LESS            shift and go to state 63
+    GREATER_EQUALS  shift and go to state 64
+    LESS_EQUALS     shift and go to state 65
+    NOT_EQUALS      shift and go to state 66
+    ENTRE           shift and go to state 67
+    PARECIDO_A      shift and go to state 68
+    ES_NULO         shift and go to state 69
+
+
+state 50
+
+    (43) condition -> CONTANDO . LPAREN ASTERISK RPAREN GREATER NUMBER
+
+    LPAREN          shift and go to state 70
+
+
+state 51
+
+    (17) select_query -> TRAEME selection DE_LA_TABLA table opt_join_clause . opt_where_clause opt_group_by_clause opt_having_clause opt_order_by_clause opt_limit_clause SEMICOLON
+    (32) opt_where_clause -> . DONDE condition
+    (33) opt_where_clause -> .
+
+    DONDE           shift and go to state 35
+    AGRUPANDO_POR   reduce using rule 33 (opt_where_clause -> .)
+    WHERE_DEL_GROUP_BY reduce using rule 33 (opt_where_clause -> .)
+    ORDENA_POR      reduce using rule 33 (opt_where_clause -> .)
+    COMO_MUCHO      reduce using rule 33 (opt_where_clause -> .)
+    SEMICOLON       reduce using rule 33 (opt_where_clause -> .)
+
+    opt_where_clause               shift and go to state 71
+
+state 52
+
+    (20) opt_join_clause -> MEZCLANDO . table EN condition
+    (31) table -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 21
+
+    table                          shift and go to state 72
+
+state 53
+
+    (24) selection -> CONTANDO LPAREN ASTERISK RPAREN .
+
+    DE_LA_TABLA     reduce using rule 24 (selection -> CONTANDO LPAREN ASTERISK RPAREN .)
+
+
+state 54
+
+    (25) selection -> CONTANDO LPAREN TODO RPAREN .
+
+    DE_LA_TABLA     reduce using rule 25 (selection -> CONTANDO LPAREN TODO RPAREN .)
+
+
+state 55
+
+    (53) insert_query -> METE_EN table LPAREN columns RPAREN . LOS_VALORES LPAREN values RPAREN SEMICOLON
+
+    LOS_VALORES     shift and go to state 73
+
+
+state 56
+
+    (56) update_query -> ACTUALIZA table SETEA assignments opt_where_clause . SEMICOLON
+
+    SEMICOLON       shift and go to state 74
+
+
+state 57
+
+    (57) assignments -> assignments COMMA . assignment
+    (59) assignment -> . IDENTIFIER EQUALS value
+
+    IDENTIFIER      shift and go to state 43
+
+    assignment                     shift and go to state 75
+
+state 58
+
+    (59) assignment -> IDENTIFIER EQUALS . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 77
+
+state 59
+
+    (16) datatype -> IDENTIFIER . LPAREN NUMBER RPAREN
+
+    LPAREN          shift and go to state 80
+
+
+state 60
+
+    (7) alter_action -> AGREGA_LA_COLUMNA IDENTIFIER datatype . opt_constraints
+    (9) opt_constraints -> . constraints
+    (10) opt_constraints -> .
+    (11) constraints -> . constraints constraint
+    (12) constraints -> . constraint
+    (13) constraint -> . NO_NULO
+    (14) constraint -> . UNICO
+    (15) constraint -> . POR_DEFECTO value
+
+    SEMICOLON       reduce using rule 10 (opt_constraints -> .)
+    NO_NULO         shift and go to state 84
+    UNICO           shift and go to state 85
+    POR_DEFECTO     shift and go to state 86
+
+    opt_constraints                shift and go to state 81
+    constraints                    shift and go to state 82
+    constraint                     shift and go to state 83
+
+state 61
+
+    (34) condition -> IDENTIFIER EQUALS . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 87
+
+state 62
+
+    (35) condition -> IDENTIFIER GREATER . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 88
+
+state 63
+
+    (36) condition -> IDENTIFIER LESS . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 89
+
+state 64
+
+    (37) condition -> IDENTIFIER GREATER_EQUALS . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 90
+
+state 65
+
+    (38) condition -> IDENTIFIER LESS_EQUALS . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 91
+
+state 66
+
+    (39) condition -> IDENTIFIER NOT_EQUALS . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 92
+
+state 67
+
+    (40) condition -> IDENTIFIER ENTRE . value AND value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 93
+
+state 68
+
+    (41) condition -> IDENTIFIER PARECIDO_A . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 94
+
+state 69
+
+    (42) condition -> IDENTIFIER ES_NULO .
+
+    SEMICOLON       reduce using rule 42 (condition -> IDENTIFIER ES_NULO .)
+    AGRUPANDO_POR   reduce using rule 42 (condition -> IDENTIFIER ES_NULO .)
+    WHERE_DEL_GROUP_BY reduce using rule 42 (condition -> IDENTIFIER ES_NULO .)
+    ORDENA_POR      reduce using rule 42 (condition -> IDENTIFIER ES_NULO .)
+    COMO_MUCHO      reduce using rule 42 (condition -> IDENTIFIER ES_NULO .)
+    DONDE           reduce using rule 42 (condition -> IDENTIFIER ES_NULO .)
+
+
+state 70
+
+    (43) condition -> CONTANDO LPAREN . ASTERISK RPAREN GREATER NUMBER
+
+    ASTERISK        shift and go to state 95
+
+
+state 71
+
+    (17) select_query -> TRAEME selection DE_LA_TABLA table opt_join_clause opt_where_clause . opt_group_by_clause opt_having_clause opt_order_by_clause opt_limit_clause SEMICOLON
+    (47) opt_group_by_clause -> . AGRUPANDO_POR columns
+    (48) opt_group_by_clause -> .
+
+    AGRUPANDO_POR   shift and go to state 97
+    WHERE_DEL_GROUP_BY reduce using rule 48 (opt_group_by_clause -> .)
+    ORDENA_POR      reduce using rule 48 (opt_group_by_clause -> .)
+    COMO_MUCHO      reduce using rule 48 (opt_group_by_clause -> .)
+    SEMICOLON       reduce using rule 48 (opt_group_by_clause -> .)
+
+    opt_group_by_clause            shift and go to state 96
+
+state 72
+
+    (20) opt_join_clause -> MEZCLANDO table . EN condition
+
+    EN              shift and go to state 98
+
+
+state 73
+
+    (53) insert_query -> METE_EN table LPAREN columns RPAREN LOS_VALORES . LPAREN values RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 99
+
+
+state 74
+
+    (56) update_query -> ACTUALIZA table SETEA assignments opt_where_clause SEMICOLON .
+
+    $end            reduce using rule 56 (update_query -> ACTUALIZA table SETEA assignments opt_where_clause SEMICOLON .)
+
+
+state 75
+
+    (57) assignments -> assignments COMMA assignment .
+
+    COMMA           reduce using rule 57 (assignments -> assignments COMMA assignment .)
+    DONDE           reduce using rule 57 (assignments -> assignments COMMA assignment .)
+    SEMICOLON       reduce using rule 57 (assignments -> assignments COMMA assignment .)
+
+
+state 76
+
+    (46) value -> IDENTIFIER .
+
+    COMMA           reduce using rule 46 (value -> IDENTIFIER .)
+    DONDE           reduce using rule 46 (value -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 46 (value -> IDENTIFIER .)
+    AGRUPANDO_POR   reduce using rule 46 (value -> IDENTIFIER .)
+    WHERE_DEL_GROUP_BY reduce using rule 46 (value -> IDENTIFIER .)
+    ORDENA_POR      reduce using rule 46 (value -> IDENTIFIER .)
+    COMO_MUCHO      reduce using rule 46 (value -> IDENTIFIER .)
+    AND             reduce using rule 46 (value -> IDENTIFIER .)
+    NO_NULO         reduce using rule 46 (value -> IDENTIFIER .)
+    UNICO           reduce using rule 46 (value -> IDENTIFIER .)
+    POR_DEFECTO     reduce using rule 46 (value -> IDENTIFIER .)
+    RPAREN          reduce using rule 46 (value -> IDENTIFIER .)
+
+
+state 77
+
+    (59) assignment -> IDENTIFIER EQUALS value .
+
+    COMMA           reduce using rule 59 (assignment -> IDENTIFIER EQUALS value .)
+    DONDE           reduce using rule 59 (assignment -> IDENTIFIER EQUALS value .)
+    SEMICOLON       reduce using rule 59 (assignment -> IDENTIFIER EQUALS value .)
+
+
+state 78
+
+    (44) value -> NUMBER .
+
+    COMMA           reduce using rule 44 (value -> NUMBER .)
+    DONDE           reduce using rule 44 (value -> NUMBER .)
+    SEMICOLON       reduce using rule 44 (value -> NUMBER .)
+    AGRUPANDO_POR   reduce using rule 44 (value -> NUMBER .)
+    WHERE_DEL_GROUP_BY reduce using rule 44 (value -> NUMBER .)
+    ORDENA_POR      reduce using rule 44 (value -> NUMBER .)
+    COMO_MUCHO      reduce using rule 44 (value -> NUMBER .)
+    AND             reduce using rule 44 (value -> NUMBER .)
+    NO_NULO         reduce using rule 44 (value -> NUMBER .)
+    UNICO           reduce using rule 44 (value -> NUMBER .)
+    POR_DEFECTO     reduce using rule 44 (value -> NUMBER .)
+    RPAREN          reduce using rule 44 (value -> NUMBER .)
+
+
+state 79
+
+    (45) value -> STRING .
+
+    COMMA           reduce using rule 45 (value -> STRING .)
+    DONDE           reduce using rule 45 (value -> STRING .)
+    SEMICOLON       reduce using rule 45 (value -> STRING .)
+    AGRUPANDO_POR   reduce using rule 45 (value -> STRING .)
+    WHERE_DEL_GROUP_BY reduce using rule 45 (value -> STRING .)
+    ORDENA_POR      reduce using rule 45 (value -> STRING .)
+    COMO_MUCHO      reduce using rule 45 (value -> STRING .)
+    AND             reduce using rule 45 (value -> STRING .)
+    NO_NULO         reduce using rule 45 (value -> STRING .)
+    UNICO           reduce using rule 45 (value -> STRING .)
+    POR_DEFECTO     reduce using rule 45 (value -> STRING .)
+    RPAREN          reduce using rule 45 (value -> STRING .)
+
+
+state 80
+
+    (16) datatype -> IDENTIFIER LPAREN . NUMBER RPAREN
+
+    NUMBER          shift and go to state 100
+
+
+state 81
+
+    (7) alter_action -> AGREGA_LA_COLUMNA IDENTIFIER datatype opt_constraints .
+
+    SEMICOLON       reduce using rule 7 (alter_action -> AGREGA_LA_COLUMNA IDENTIFIER datatype opt_constraints .)
+
+
+state 82
+
+    (9) opt_constraints -> constraints .
+    (11) constraints -> constraints . constraint
+    (13) constraint -> . NO_NULO
+    (14) constraint -> . UNICO
+    (15) constraint -> . POR_DEFECTO value
+
+    SEMICOLON       reduce using rule 9 (opt_constraints -> constraints .)
+    NO_NULO         shift and go to state 84
+    UNICO           shift and go to state 85
+    POR_DEFECTO     shift and go to state 86
+
+    constraint                     shift and go to state 101
+
+state 83
+
+    (12) constraints -> constraint .
+
+    NO_NULO         reduce using rule 12 (constraints -> constraint .)
+    UNICO           reduce using rule 12 (constraints -> constraint .)
+    POR_DEFECTO     reduce using rule 12 (constraints -> constraint .)
+    SEMICOLON       reduce using rule 12 (constraints -> constraint .)
+
+
+state 84
+
+    (13) constraint -> NO_NULO .
+
+    NO_NULO         reduce using rule 13 (constraint -> NO_NULO .)
+    UNICO           reduce using rule 13 (constraint -> NO_NULO .)
+    POR_DEFECTO     reduce using rule 13 (constraint -> NO_NULO .)
+    SEMICOLON       reduce using rule 13 (constraint -> NO_NULO .)
+
+
+state 85
+
+    (14) constraint -> UNICO .
+
+    NO_NULO         reduce using rule 14 (constraint -> UNICO .)
+    UNICO           reduce using rule 14 (constraint -> UNICO .)
+    POR_DEFECTO     reduce using rule 14 (constraint -> UNICO .)
+    SEMICOLON       reduce using rule 14 (constraint -> UNICO .)
+
+
+state 86
+
+    (15) constraint -> POR_DEFECTO . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 102
+
+state 87
+
+    (34) condition -> IDENTIFIER EQUALS value .
+
+    SEMICOLON       reduce using rule 34 (condition -> IDENTIFIER EQUALS value .)
+    AGRUPANDO_POR   reduce using rule 34 (condition -> IDENTIFIER EQUALS value .)
+    WHERE_DEL_GROUP_BY reduce using rule 34 (condition -> IDENTIFIER EQUALS value .)
+    ORDENA_POR      reduce using rule 34 (condition -> IDENTIFIER EQUALS value .)
+    COMO_MUCHO      reduce using rule 34 (condition -> IDENTIFIER EQUALS value .)
+    DONDE           reduce using rule 34 (condition -> IDENTIFIER EQUALS value .)
+
+
+state 88
+
+    (35) condition -> IDENTIFIER GREATER value .
+
+    SEMICOLON       reduce using rule 35 (condition -> IDENTIFIER GREATER value .)
+    AGRUPANDO_POR   reduce using rule 35 (condition -> IDENTIFIER GREATER value .)
+    WHERE_DEL_GROUP_BY reduce using rule 35 (condition -> IDENTIFIER GREATER value .)
+    ORDENA_POR      reduce using rule 35 (condition -> IDENTIFIER GREATER value .)
+    COMO_MUCHO      reduce using rule 35 (condition -> IDENTIFIER GREATER value .)
+    DONDE           reduce using rule 35 (condition -> IDENTIFIER GREATER value .)
+
+
+state 89
+
+    (36) condition -> IDENTIFIER LESS value .
+
+    SEMICOLON       reduce using rule 36 (condition -> IDENTIFIER LESS value .)
+    AGRUPANDO_POR   reduce using rule 36 (condition -> IDENTIFIER LESS value .)
+    WHERE_DEL_GROUP_BY reduce using rule 36 (condition -> IDENTIFIER LESS value .)
+    ORDENA_POR      reduce using rule 36 (condition -> IDENTIFIER LESS value .)
+    COMO_MUCHO      reduce using rule 36 (condition -> IDENTIFIER LESS value .)
+    DONDE           reduce using rule 36 (condition -> IDENTIFIER LESS value .)
+
+
+state 90
+
+    (37) condition -> IDENTIFIER GREATER_EQUALS value .
+
+    SEMICOLON       reduce using rule 37 (condition -> IDENTIFIER GREATER_EQUALS value .)
+    AGRUPANDO_POR   reduce using rule 37 (condition -> IDENTIFIER GREATER_EQUALS value .)
+    WHERE_DEL_GROUP_BY reduce using rule 37 (condition -> IDENTIFIER GREATER_EQUALS value .)
+    ORDENA_POR      reduce using rule 37 (condition -> IDENTIFIER GREATER_EQUALS value .)
+    COMO_MUCHO      reduce using rule 37 (condition -> IDENTIFIER GREATER_EQUALS value .)
+    DONDE           reduce using rule 37 (condition -> IDENTIFIER GREATER_EQUALS value .)
+
+
+state 91
+
+    (38) condition -> IDENTIFIER LESS_EQUALS value .
+
+    SEMICOLON       reduce using rule 38 (condition -> IDENTIFIER LESS_EQUALS value .)
+    AGRUPANDO_POR   reduce using rule 38 (condition -> IDENTIFIER LESS_EQUALS value .)
+    WHERE_DEL_GROUP_BY reduce using rule 38 (condition -> IDENTIFIER LESS_EQUALS value .)
+    ORDENA_POR      reduce using rule 38 (condition -> IDENTIFIER LESS_EQUALS value .)
+    COMO_MUCHO      reduce using rule 38 (condition -> IDENTIFIER LESS_EQUALS value .)
+    DONDE           reduce using rule 38 (condition -> IDENTIFIER LESS_EQUALS value .)
+
+
+state 92
+
+    (39) condition -> IDENTIFIER NOT_EQUALS value .
+
+    SEMICOLON       reduce using rule 39 (condition -> IDENTIFIER NOT_EQUALS value .)
+    AGRUPANDO_POR   reduce using rule 39 (condition -> IDENTIFIER NOT_EQUALS value .)
+    WHERE_DEL_GROUP_BY reduce using rule 39 (condition -> IDENTIFIER NOT_EQUALS value .)
+    ORDENA_POR      reduce using rule 39 (condition -> IDENTIFIER NOT_EQUALS value .)
+    COMO_MUCHO      reduce using rule 39 (condition -> IDENTIFIER NOT_EQUALS value .)
+    DONDE           reduce using rule 39 (condition -> IDENTIFIER NOT_EQUALS value .)
+
+
+state 93
+
+    (40) condition -> IDENTIFIER ENTRE value . AND value
+
+    AND             shift and go to state 103
+
+
+state 94
+
+    (41) condition -> IDENTIFIER PARECIDO_A value .
+
+    SEMICOLON       reduce using rule 41 (condition -> IDENTIFIER PARECIDO_A value .)
+    AGRUPANDO_POR   reduce using rule 41 (condition -> IDENTIFIER PARECIDO_A value .)
+    WHERE_DEL_GROUP_BY reduce using rule 41 (condition -> IDENTIFIER PARECIDO_A value .)
+    ORDENA_POR      reduce using rule 41 (condition -> IDENTIFIER PARECIDO_A value .)
+    COMO_MUCHO      reduce using rule 41 (condition -> IDENTIFIER PARECIDO_A value .)
+    DONDE           reduce using rule 41 (condition -> IDENTIFIER PARECIDO_A value .)
+
+
+state 95
+
+    (43) condition -> CONTANDO LPAREN ASTERISK . RPAREN GREATER NUMBER
+
+    RPAREN          shift and go to state 104
+
+
+state 96
+
+    (17) select_query -> TRAEME selection DE_LA_TABLA table opt_join_clause opt_where_clause opt_group_by_clause . opt_having_clause opt_order_by_clause opt_limit_clause SEMICOLON
+    (18) opt_having_clause -> . WHERE_DEL_GROUP_BY condition
+    (19) opt_having_clause -> .
+
+    WHERE_DEL_GROUP_BY shift and go to state 106
+    ORDENA_POR      reduce using rule 19 (opt_having_clause -> .)
+    COMO_MUCHO      reduce using rule 19 (opt_having_clause -> .)
+    SEMICOLON       reduce using rule 19 (opt_having_clause -> .)
+
+    opt_having_clause              shift and go to state 105
+
+state 97
+
+    (47) opt_group_by_clause -> AGRUPANDO_POR . columns
+    (27) columns -> . column_list
+    (28) column_list -> . column_list COMMA column
+    (29) column_list -> . column
+    (30) column -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 19
+
+    columns                        shift and go to state 107
+    column_list                    shift and go to state 17
+    column                         shift and go to state 18
+
+state 98
+
+    (20) opt_join_clause -> MEZCLANDO table EN . condition
+    (34) condition -> . IDENTIFIER EQUALS value
+    (35) condition -> . IDENTIFIER GREATER value
+    (36) condition -> . IDENTIFIER LESS value
+    (37) condition -> . IDENTIFIER GREATER_EQUALS value
+    (38) condition -> . IDENTIFIER LESS_EQUALS value
+    (39) condition -> . IDENTIFIER NOT_EQUALS value
+    (40) condition -> . IDENTIFIER ENTRE value AND value
+    (41) condition -> . IDENTIFIER PARECIDO_A value
+    (42) condition -> . IDENTIFIER ES_NULO
+    (43) condition -> . CONTANDO LPAREN ASTERISK RPAREN GREATER NUMBER
+
+    IDENTIFIER      shift and go to state 49
+    CONTANDO        shift and go to state 50
+
+    condition                      shift and go to state 108
+
+state 99
+
+    (53) insert_query -> METE_EN table LPAREN columns RPAREN LOS_VALORES LPAREN . values RPAREN SEMICOLON
+    (54) values -> . values COMMA value
+    (55) values -> . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    values                         shift and go to state 109
+    value                          shift and go to state 110
+
+state 100
+
+    (16) datatype -> IDENTIFIER LPAREN NUMBER . RPAREN
+
+    RPAREN          shift and go to state 111
+
+
+state 101
+
+    (11) constraints -> constraints constraint .
+
+    NO_NULO         reduce using rule 11 (constraints -> constraints constraint .)
+    UNICO           reduce using rule 11 (constraints -> constraints constraint .)
+    POR_DEFECTO     reduce using rule 11 (constraints -> constraints constraint .)
+    SEMICOLON       reduce using rule 11 (constraints -> constraints constraint .)
+
+
+state 102
+
+    (15) constraint -> POR_DEFECTO value .
+
+    NO_NULO         reduce using rule 15 (constraint -> POR_DEFECTO value .)
+    UNICO           reduce using rule 15 (constraint -> POR_DEFECTO value .)
+    POR_DEFECTO     reduce using rule 15 (constraint -> POR_DEFECTO value .)
+    SEMICOLON       reduce using rule 15 (constraint -> POR_DEFECTO value .)
+
+
+state 103
+
+    (40) condition -> IDENTIFIER ENTRE value AND . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 112
+
+state 104
+
+    (43) condition -> CONTANDO LPAREN ASTERISK RPAREN . GREATER NUMBER
+
+    GREATER         shift and go to state 113
+
+
+state 105
+
+    (17) select_query -> TRAEME selection DE_LA_TABLA table opt_join_clause opt_where_clause opt_group_by_clause opt_having_clause . opt_order_by_clause opt_limit_clause SEMICOLON
+    (49) opt_order_by_clause -> . ORDENA_POR columns
+    (50) opt_order_by_clause -> .
+
+    ORDENA_POR      shift and go to state 115
+    COMO_MUCHO      reduce using rule 50 (opt_order_by_clause -> .)
+    SEMICOLON       reduce using rule 50 (opt_order_by_clause -> .)
+
+    opt_order_by_clause            shift and go to state 114
+
+state 106
+
+    (18) opt_having_clause -> WHERE_DEL_GROUP_BY . condition
+    (34) condition -> . IDENTIFIER EQUALS value
+    (35) condition -> . IDENTIFIER GREATER value
+    (36) condition -> . IDENTIFIER LESS value
+    (37) condition -> . IDENTIFIER GREATER_EQUALS value
+    (38) condition -> . IDENTIFIER LESS_EQUALS value
+    (39) condition -> . IDENTIFIER NOT_EQUALS value
+    (40) condition -> . IDENTIFIER ENTRE value AND value
+    (41) condition -> . IDENTIFIER PARECIDO_A value
+    (42) condition -> . IDENTIFIER ES_NULO
+    (43) condition -> . CONTANDO LPAREN ASTERISK RPAREN GREATER NUMBER
+
+    IDENTIFIER      shift and go to state 49
+    CONTANDO        shift and go to state 50
+
+    condition                      shift and go to state 116
+
+state 107
+
+    (47) opt_group_by_clause -> AGRUPANDO_POR columns .
+
+    WHERE_DEL_GROUP_BY reduce using rule 47 (opt_group_by_clause -> AGRUPANDO_POR columns .)
+    ORDENA_POR      reduce using rule 47 (opt_group_by_clause -> AGRUPANDO_POR columns .)
+    COMO_MUCHO      reduce using rule 47 (opt_group_by_clause -> AGRUPANDO_POR columns .)
+    SEMICOLON       reduce using rule 47 (opt_group_by_clause -> AGRUPANDO_POR columns .)
+
+
+state 108
+
+    (20) opt_join_clause -> MEZCLANDO table EN condition .
+
+    DONDE           reduce using rule 20 (opt_join_clause -> MEZCLANDO table EN condition .)
+    AGRUPANDO_POR   reduce using rule 20 (opt_join_clause -> MEZCLANDO table EN condition .)
+    WHERE_DEL_GROUP_BY reduce using rule 20 (opt_join_clause -> MEZCLANDO table EN condition .)
+    ORDENA_POR      reduce using rule 20 (opt_join_clause -> MEZCLANDO table EN condition .)
+    COMO_MUCHO      reduce using rule 20 (opt_join_clause -> MEZCLANDO table EN condition .)
+    SEMICOLON       reduce using rule 20 (opt_join_clause -> MEZCLANDO table EN condition .)
+
+
+state 109
+
+    (53) insert_query -> METE_EN table LPAREN columns RPAREN LOS_VALORES LPAREN values . RPAREN SEMICOLON
+    (54) values -> values . COMMA value
+
+    RPAREN          shift and go to state 117
+    COMMA           shift and go to state 118
+
+
+state 110
+
+    (55) values -> value .
+
+    RPAREN          reduce using rule 55 (values -> value .)
+    COMMA           reduce using rule 55 (values -> value .)
+
+
+state 111
+
+    (16) datatype -> IDENTIFIER LPAREN NUMBER RPAREN .
+
+    NO_NULO         reduce using rule 16 (datatype -> IDENTIFIER LPAREN NUMBER RPAREN .)
+    UNICO           reduce using rule 16 (datatype -> IDENTIFIER LPAREN NUMBER RPAREN .)
+    POR_DEFECTO     reduce using rule 16 (datatype -> IDENTIFIER LPAREN NUMBER RPAREN .)
+    SEMICOLON       reduce using rule 16 (datatype -> IDENTIFIER LPAREN NUMBER RPAREN .)
+
+
+state 112
+
+    (40) condition -> IDENTIFIER ENTRE value AND value .
+
+    SEMICOLON       reduce using rule 40 (condition -> IDENTIFIER ENTRE value AND value .)
+    AGRUPANDO_POR   reduce using rule 40 (condition -> IDENTIFIER ENTRE value AND value .)
+    WHERE_DEL_GROUP_BY reduce using rule 40 (condition -> IDENTIFIER ENTRE value AND value .)
+    ORDENA_POR      reduce using rule 40 (condition -> IDENTIFIER ENTRE value AND value .)
+    COMO_MUCHO      reduce using rule 40 (condition -> IDENTIFIER ENTRE value AND value .)
+    DONDE           reduce using rule 40 (condition -> IDENTIFIER ENTRE value AND value .)
+
+
+state 113
+
+    (43) condition -> CONTANDO LPAREN ASTERISK RPAREN GREATER . NUMBER
+
+    NUMBER          shift and go to state 119
+
+
+state 114
+
+    (17) select_query -> TRAEME selection DE_LA_TABLA table opt_join_clause opt_where_clause opt_group_by_clause opt_having_clause opt_order_by_clause . opt_limit_clause SEMICOLON
+    (51) opt_limit_clause -> . COMO_MUCHO NUMBER
+    (52) opt_limit_clause -> .
+
+    COMO_MUCHO      shift and go to state 121
+    SEMICOLON       reduce using rule 52 (opt_limit_clause -> .)
+
+    opt_limit_clause               shift and go to state 120
+
+state 115
+
+    (49) opt_order_by_clause -> ORDENA_POR . columns
+    (27) columns -> . column_list
+    (28) column_list -> . column_list COMMA column
+    (29) column_list -> . column
+    (30) column -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 19
+
+    columns                        shift and go to state 122
+    column_list                    shift and go to state 17
+    column                         shift and go to state 18
+
+state 116
+
+    (18) opt_having_clause -> WHERE_DEL_GROUP_BY condition .
+
+    ORDENA_POR      reduce using rule 18 (opt_having_clause -> WHERE_DEL_GROUP_BY condition .)
+    COMO_MUCHO      reduce using rule 18 (opt_having_clause -> WHERE_DEL_GROUP_BY condition .)
+    SEMICOLON       reduce using rule 18 (opt_having_clause -> WHERE_DEL_GROUP_BY condition .)
+
+
+state 117
+
+    (53) insert_query -> METE_EN table LPAREN columns RPAREN LOS_VALORES LPAREN values RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 123
+
+
+state 118
+
+    (54) values -> values COMMA . value
+    (44) value -> . NUMBER
+    (45) value -> . STRING
+    (46) value -> . IDENTIFIER
+
+    NUMBER          shift and go to state 78
+    STRING          shift and go to state 79
+    IDENTIFIER      shift and go to state 76
+
+    value                          shift and go to state 124
+
+state 119
+
+    (43) condition -> CONTANDO LPAREN ASTERISK RPAREN GREATER NUMBER .
+
+    SEMICOLON       reduce using rule 43 (condition -> CONTANDO LPAREN ASTERISK RPAREN GREATER NUMBER .)
+    AGRUPANDO_POR   reduce using rule 43 (condition -> CONTANDO LPAREN ASTERISK RPAREN GREATER NUMBER .)
+    WHERE_DEL_GROUP_BY reduce using rule 43 (condition -> CONTANDO LPAREN ASTERISK RPAREN GREATER NUMBER .)
+    ORDENA_POR      reduce using rule 43 (condition -> CONTANDO LPAREN ASTERISK RPAREN GREATER NUMBER .)
+    COMO_MUCHO      reduce using rule 43 (condition -> CONTANDO LPAREN ASTERISK RPAREN GREATER NUMBER .)
+    DONDE           reduce using rule 43 (condition -> CONTANDO LPAREN ASTERISK RPAREN GREATER NUMBER .)
+
+
+state 120
+
+    (17) select_query -> TRAEME selection DE_LA_TABLA table opt_join_clause opt_where_clause opt_group_by_clause opt_having_clause opt_order_by_clause opt_limit_clause . SEMICOLON
+
+    SEMICOLON       shift and go to state 125
+
+
+state 121
+
+    (51) opt_limit_clause -> COMO_MUCHO . NUMBER
+
+    NUMBER          shift and go to state 126
+
+
+state 122
+
+    (49) opt_order_by_clause -> ORDENA_POR columns .
+
+    COMO_MUCHO      reduce using rule 49 (opt_order_by_clause -> ORDENA_POR columns .)
+    SEMICOLON       reduce using rule 49 (opt_order_by_clause -> ORDENA_POR columns .)
+
+
+state 123
+
+    (53) insert_query -> METE_EN table LPAREN columns RPAREN LOS_VALORES LPAREN values RPAREN SEMICOLON .
+
+    $end            reduce using rule 53 (insert_query -> METE_EN table LPAREN columns RPAREN LOS_VALORES LPAREN values RPAREN SEMICOLON .)
+
+
+state 124
+
+    (54) values -> values COMMA value .
+
+    RPAREN          reduce using rule 54 (values -> values COMMA value .)
+    COMMA           reduce using rule 54 (values -> values COMMA value .)
+
+
+state 125
+
+    (17) select_query -> TRAEME selection DE_LA_TABLA table opt_join_clause opt_where_clause opt_group_by_clause opt_having_clause opt_order_by_clause opt_limit_clause SEMICOLON .
+
+    $end            reduce using rule 17 (select_query -> TRAEME selection DE_LA_TABLA table opt_join_clause opt_where_clause opt_group_by_clause opt_having_clause opt_order_by_clause opt_limit_clause SEMICOLON .)
+
+
+state 126
+
+    (51) opt_limit_clause -> COMO_MUCHO NUMBER .
+
+    SEMICOLON       reduce using rule 51 (opt_limit_clause -> COMO_MUCHO NUMBER .)
+
