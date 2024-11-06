@@ -38,6 +38,31 @@ tokens = [
     'OR',
     'NOT',
     'ASTERISK',  # Incluir 'ASTERISK' como token
+    'COUNT',
+    'DE',
+    'LA',
+    'TABLA',
+    'LOS',
+    'DISTINTOS',
+    'METE',
+    'EN',
+    'LOS',
+    'VALORES',
+    'AGRUPANDO',
+    'POR',
+    'GROUP',
+    'BY',
+    'DEL',
+    'BORRA',
+    'ACTUALIZA',
+    'SETEA',
+    'DONDE',
+    'CAMBIA',
+    'AGREGA',
+    'COLUMNA',
+    'NO',
+    'NULO',
+    'ELIMINA'
 ]
 
 # Crear el diccionario 'reserved' a partir de las palabras clave
@@ -49,6 +74,33 @@ for keyword in keywords_mapping.values():
 for keyword in keywords_mapping.keys():
     token_name = clean_token_name(keyword)
     reserved[keyword.upper()] = token_name
+
+# Agregar palabras sueltas a 'reserved'
+reserved['DE'] = 'DE'
+reserved['LA'] = 'LA'
+reserved['TABLA'] = 'TABLA'
+reserved['DISTINTOS'] = 'DISTINTOS'
+reserved['METE'] = 'METE'
+reserved['EN'] = 'EN'
+reserved['LOS'] = 'LOS'
+reserved['VALORES'] = 'VALORES'
+reserved['AGRUPANDO'] = 'AGRUPANDO'
+reserved['POR'] = 'POR'
+reserved['GROUP'] = 'GROUP'
+reserved['BY'] = 'BY'
+reserved['DEL'] = 'DEL'
+reserved['BORRA'] = 'BORRA'
+reserved['ACTUALIZA'] = 'ACTUALIZA'
+reserved['SETEA'] = 'SETEA'
+reserved['DONDE'] = 'DONDE'
+reserved['CAMBIA'] = 'CAMBIA'
+reserved['AGREGA'] = 'AGREGA'
+reserved['COLUMNA'] = 'COLUMNA'
+reserved['NO'] = 'NO'
+reserved['NULO'] = 'NULO'
+reserved['ELIMINA'] = 'ELIMINA'
+
+
 
 # Agregar tokens generados a partir de las palabras clave
 tokens += list(set(reserved.values()))
@@ -72,8 +124,8 @@ t_MINUS = r'-'
 t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_COUNT = r'COUNT|CONTANDO'
-
+t_COUNT = r'CONTANDO'
+t_DE_LA_TABLA = r'DE\s+LA\s+TABLA'
 def t_AND(t):
     r'AND|Y'
     return t
@@ -90,7 +142,7 @@ def t_OR(t):
 # Token para identificadores y palabras clave
 def t_IDENTIFIER(t):
     r'[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)*'
-    t_upper = t.value.upper()
+    t_upper = clean_token_name(t.value.upper())
     if t_upper in reserved:
         t.type = reserved[t_upper]
     else:
@@ -121,6 +173,8 @@ def t_error(t):
     t.lexer.skip(1)
 
 lexer = lex.lex()
+
+
 
 # Función para depurar e imprimir los tokens
 def print_tokens(data):

@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación del Proyecto DSL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        code {
+            background-color: #eee;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #f4f4f9;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Documentación del Proyecto DSL</h1>
+    </header>
+    <div class="container">
+        <h2>Descripción</h2>
+        <p>Este proyecto implementa un lenguaje específico de dominio (DSL) que permite traducir instrucciones en USQL (una variante personalizada de SQL) a SQL. 
+        Incluye una consola interactiva y una API fluida para facilitar el uso del lenguaje.</p>
+        
+        <h2>Instrucciones de Uso</h2>
+        <h3>Ejecutar los Tests Unitarios</h3>
+        <p>Para ejecutar todos los tests unitarios, utilice el siguiente comando:</p>
+        <pre><code>python3 -m unittest test_usql.py</code></pre>
+        <p>Para ejecutar un test específico, use:</p>
+        <pre><code>python3 -m unittest test_usql.TestUsql.test_&lt;nombre_del_test&gt;</code></pre>
+        
+        <h3>Ejecutar la Consola Interactiva</h3>
+        <p>Para iniciar la consola interactiva que traduce código USQL a SQL, ejecute:</p>
+        <pre><code>python3 main.py</code></pre>
+        <p>Ingrese sus instrucciones en USQL y, para salir, escriba <code>salir</code>.</p>
+
+        <h2>Estructura del Proyecto</h2>
+        <ul>
+            <li><code>main.py</code>: Programa principal que inicia la consola interactiva.</li>
+            <li><code>lexer.py</code>: Archivo que contiene el analizador léxico de USQL.</li>
+            <li><code>parser.py</code>: Archivo con el analizador sintáctico que convierte USQL en estructuras internas.</li>
+            <li><code>translator.py</code>: Convierte estructuras de USQL en comandos SQL.</li>
+            <li><code>fluent_api.py</code>: Implementa la FluentAPI para construir comandos USQL de manera fluida.</li>
+            <li><code>test_usql.py</code>: Contiene los tests unitarios para validar la funcionalidad del DSL.</li>
+            <li><code>keyword_mapping.py</code>: Mapea las palabras clave de USQL a SQL.</li>
+        </ul>
+
+        <h2>Documentación de Funciones Principales</h2>
+        <ul>
+            <li><strong>lexer.py</strong>: Define las reglas para descomponer el código USQL en tokens individuales.</li>
+            <li><strong>parser.py</strong>: Contiene funciones para analizar la estructura gramatical de las instrucciones USQL.</li>
+            <li><strong>translator.py</strong>: Funciones que traducen la estructura interna de USQL a sintaxis SQL válida.</li>
+            <li><strong>fluent_api.py</strong>: Proporciona una API fluida para facilitar la creación de sentencias USQL de manera programática.</li>
+            <li><strong>test_usql.py</strong>: Incluye tests que cubren los casos de uso principales y prueba la integración de la FluentAPI y la consola interactiva.</li>
+        </ul>
+    </div>
+</body>
+</html>

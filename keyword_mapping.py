@@ -2,8 +2,8 @@
 
 keywords_mapping = {
     "SELECT": "TRAEME",
-    "ASTERISK": "TODO",  # Reemplazamos '*' por 'ASTERISK' para un token válido
-    "FROM": "DE_LA_TABLA",
+    "ASTERISK": "TODO",  
+    "FROM": "DE LA TABLA",
     "WHERE": "DONDE",
     "GROUP BY": "AGRUPANDO_POR",
     "AND": "Y",
@@ -20,7 +20,7 @@ keywords_mapping = {
     "LIMIT": "COMO_MUCHO",
     "HAVING": "WHERE_DEL_GROUP_BY",
     "EXISTS": "EXISTE",
-    "IN": "EN_ESTO",  # Removemos los dos puntos
+    "IN": "EN_ESTO",  
     "BETWEEN": "ENTRE",
     "LIKE": "PARECIDO_A",
     "IS NULL": "ES_NULO",

@@ -10,7 +10,7 @@ class QueryBuilder:
         return self
 
     def from_table(self, table_name):
-        self.query += f"DE_LA_TABLA {table_name} "
+        self.query += f"DE LA TABLA {table_name} "
         return self
 
     def where(self, condition):
@@ -19,20 +19,20 @@ class QueryBuilder:
 
     def group_by(self, *args):
         columns = ', '.join(args)
-        self.query += f"AGRUPANDO_POR {columns} "
+        self.query += f"AGRUPANDO POR {columns} "
         return self
 
     def having(self, condition):
-        self.query += f"WHERE_DEL_GROUP_BY {condition} "
+        self.query += f"WHERE DEL GROUP BY {condition} "
         return self
 
     def order_by(self, *args):
         columns = ', '.join(args)
-        self.query += f"ORDENA_POR {columns} "
+        self.query += f"ORDENA POR {columns} "
         return self
 
     def limit(self, number):
-        self.query += f"COMO_MUCHO {number} "
+        self.query += f"COMO MUCHO {number} "
         return self
 
     def join(self, table_name):
@@ -45,12 +45,12 @@ class QueryBuilder:
 
     def insert_into(self, table_name, *columns):
         cols = ', '.join(columns)
-        self.query += f"METE_EN {table_name} ({cols}) "
+        self.query += f"METE EN {table_name} ({cols}) "
         return self
 
     def values(self, *values):
         vals = ', '.join(values)
-        self.query += f"LOS_VALORES ({vals}) "
+        self.query += f"LOS VALORES ({vals}) "
         return self
 
     def update(self, table_name):
@@ -63,7 +63,7 @@ class QueryBuilder:
         return self
 
     def delete_from(self, table_name):
-        self.query += f"BORRA_DE_LA {table_name} "
+        self.query += f"BORRA DE LA {table_name} "
         return self
 
     def build(self):
