@@ -19,5 +19,16 @@ pipeline {
                 sh 'mv main.html /var/www/html/documentins/usql.html'
             }
         }
+		stage('Send Email') {
+            steps {
+                emailext(
+                    subject: "Actualizacion en USQL",
+                    body: "Se acaba de hacer una actualización en el repositorio del proyecto de USQL. Para ver la nueva documentación vaya a http://ec2-34-201-54-91.compute-1.amazonaws.com",
+                    to: "rsotelosilva@gmail.com",
+                    from: "rsotelosilva@gmail.com"
+                )
+            }
+        }
+
     }
 }
